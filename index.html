@@ -1096,7 +1096,7 @@ SPDX-License-Identifier: GFDL-1.3-or-later
 -->
 
 <h1 id="qcoro">QCoro</h1>
-<p>C++ Coroutine library for Qt5 and Qt6</p>
+<p>C++ Coroutine Library for Qt5 and Qt6</p>
 <hr />
 <h2 id="overview">Overview</h2>
 <p>QCoro is a C++ library that provide set of tools to make use of C++20 coroutines
@@ -1148,25 +1148,14 @@ set(CMAKE_CXX_FLAGS &quot;${CMAKE_CXX_FLAGS} -fcoroutines&quot;)
 <p>Alternatively, just use <code>qcoro_enable_coroutines()</code> CMake macro provided by QCoro to set the
 flags automatically.</p>
 <h3 id="clang">Clang</h3>
-<p>In Clang coroutines are still considered experimental (unlike in GCC), so
-you cannot mix Clang and libstdc++. You must use Clang with libc++. Coroutines
-are enabled by adding <code>-fcoroutines-ts</code> to <code>CMAKE_CXX_FLAGS</code>.</p>
+<p>In Clang coroutines are still considered experimental (unlike in GCC).
+Coroutines are enabled by adding <code>-fcoroutines-ts</code> to <code>CMAKE_CXX_FLAGS</code>.</p>
 <p>CMake:
 <div class="highlight"><pre><span></span><code>set(CMAKE_CXX_STANDARD 20)
-set(CMAKE_CXX_FLAGS &quot;${CMAKE_CXX_FLAGS} -fcoroutines-ts -stdlib=libc++&quot;)
+set(CMAKE_CXX_FLAGS &quot;${CMAKE_CXX_FLAGS} -fcoroutines-ts&quot;)
 </code></pre></div></p>
 <p>Alternatively, just use <code>qcoro_enable_coroutines()</code> CMake macro provided by QCoro to set the
 flags automatically.</p>
-<div class="admonition info">
-<p class="admonition-title">LLVM libc++ vs. GNU libstdc++</p>
-<p>While both libraries implement the same standard they are not mutually compatible - for one thing LLVM's 
-libc++ is a bit behind libstdc++ on implementing all the features, but more importantly they are not
-ABI compatible. That means that if you compile Qt with libstdc++ (which most Linux distributions do)
-and your application with QCoro using libc++, you will likely run into <code>undefined reference</code> errors
-when linking your app against Qt.</p>
-<p>One option is to build Qt youself with libc++, other option is to use GCC or MSVC and avoid Clang until 
-it has full support for coroutines, which will hopefully allow using libstdc++ with Clang.</p>
-</div>
 <h3 id="msvc">MSVC</h3>
 <p>Coroutine support in MSVC is enabled automatically by CMake when C++20 standard is specified
 in <code>CMAKE_CXX_STANDARD</code>:</p>
