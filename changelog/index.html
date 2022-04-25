@@ -910,6 +910,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#050-2022-04-25" class="md-nav__link">
+    0.5.0 (2022-04-25)
+  </a>
+  
+    <nav class="md-nav" aria-label="0.5.0 (2022-04-25)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#then-continuation-for-task" class="md-nav__link">
+    .then() continuation for Task
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all-asynchronous-operations-now-return-taskt" class="md-nav__link">
+    All asynchronous operations now return Task&lt;T&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timeout-support-for-many-operations" class="md-nav__link">
+    Timeout support for many operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#support-for-qthread" class="md-nav__link">
+    Support for QThread
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-changelog" class="md-nav__link">
+    Full changelog
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#040-2022-01-06" class="md-nav__link">
     0.4.0 (2022-01-06)
   </a>
@@ -939,7 +987,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#full-changelog" class="md-nav__link">
+  <a href="#full-changelog_1" class="md-nav__link">
     Full changelog
   </a>
   
@@ -1092,6 +1140,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#050-2022-04-25" class="md-nav__link">
+    0.5.0 (2022-04-25)
+  </a>
+  
+    <nav class="md-nav" aria-label="0.5.0 (2022-04-25)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#then-continuation-for-task" class="md-nav__link">
+    .then() continuation for Task
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#all-asynchronous-operations-now-return-taskt" class="md-nav__link">
+    All asynchronous operations now return Task&lt;T&gt;
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#timeout-support-for-many-operations" class="md-nav__link">
+    Timeout support for many operations
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#support-for-qthread" class="md-nav__link">
+    Support for QThread
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-changelog" class="md-nav__link">
+    Full changelog
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#040-2022-01-06" class="md-nav__link">
     0.4.0 (2022-01-06)
   </a>
@@ -1121,7 +1217,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#full-changelog" class="md-nav__link">
+  <a href="#full-changelog_1" class="md-nav__link">
     Full changelog
   </a>
   
@@ -1208,6 +1304,77 @@ SPDX-License-Identifier: GFDL-1.3-or-later
 -->
 
 <h1 id="changelog">Changelog</h1>
+<h2 id="050-2022-04-25">0.5.0 (2022-04-25)</h2>
+<p>Major features:</p>
+<ul>
+<li>.then() continuation for <code>Task&lt;T&gt;</code></li>
+<li>All asynchronous operations now return <code>Task&lt;T&gt;</code></li>
+<li>Timeouts for many operations</li>
+<li>Support for <code>QThread</code></li>
+</ul>
+<h3 id="then-continuation-for-task">.then() continuation for Task<T></h3>
+<p>Sometimes it's not possible to <code>co_await</code> a coroutine - usually because you need to integrate with a 3rd party code
+that is not coroutine-ready. A good example might be implementing <code>QAbstractItemModel</code>, where none of the virtual
+methods are coroutines and thus it's not possible to use <code>co_await</code> in them.</p>
+<p>To still make it possible to all coroutines from such code, <code>QCoro::Task&lt;T&gt;</code> now has a new method: <code>.then()</code>,
+which allows attaching a continuation callback that will be invoked by QCoro when the coroutine represented
+by the <code>Task</code> finishes.</p>
+<div class="highlight"><pre><span></span><code><span class="kt">void</span><span class="w"> </span><span class="nf">notACoroutine</span><span class="p">()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">someCoroutineReturningQString</span><span class="p">().</span><span class="n">then</span><span class="p">([](</span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="n">result</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Will be invoked when the someCoroutine() finishes.</span>
+<span class="w">        </span><span class="c1">// The result of the coroutine is passed as an argument to the continuation.</span>
+<span class="w">    </span><span class="p">});</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>The continuation itself might be a coroutine, and the result of the <code>.then()</code> member function is again a <code>Task&lt;R&gt;</code>
+(where <code>R</code> is the return type of the continuation callback), so it is possible to chain multiple continuations
+as well as <code>co_await</code>ing the entire chain.</p>
+<h3 id="all-asynchronous-operations-now-return-taskt">All asynchronous operations now return <code>Task&lt;T&gt;</code></h3>
+<p>Up until now each operation from the QCoro wrapper types returned a special awaitable  - for example,
+<code>QCoroIODevice::read()</code> returned <code>QCoro::detail::QCoroIODevice::ReadOperation</code>. In most cases users of QCoro do
+not need to concern themselves with that type, since they can still directly <code>co_await</code> the returned awaitable.</p>
+<p>However, it unnecessarily leaks implementation details of QCoro into public API and it makes it harded to return
+a coroutine from a non-coroutine function.</p>
+<p>As of QCoro 0.5.0, all the operations now return <code>Task&lt;T&gt;</code>, which makes the API consistent. As a secondary effect,
+all the operations can have a chained continuation using the <code>.then()</code> continuation, as described above.</p>
+<h3 id="timeout-support-for-many-operations">Timeout support for many operations</h3>
+<p>Qt doesn't allow specifying timeout for many operations, because they are typically non-blocking. But the timeout
+makes sense in most QCoro cases, because they are combination of wait + the non-blocking operation. Let's take
+<code>QIODevice::read()</code> for example: the Qt version doesn't have any timeout, because the call will never block - if
+there's nothing to read, it simply returns an empty <code>QByteArray</code>.</p>
+<p>On the other hand, <code>QCoroIODevice::read()</code> is an asynchronous operation, because under to hood, it's a coroutine
+that asynchronously calls a sequence of</p>
+<div class="highlight"><pre><span></span><code><span class="n">device</span><span class="o">-&gt;</span><span class="n">waitForReadyRead</span><span class="p">();</span><span class="w"></span>
+<span class="n">device</span><span class="o">-&gt;</span><span class="n">read</span><span class="p">();</span><span class="w"></span>
+</code></pre></div>
+<p>Since <code>QIODevice::waitForReadyRead()</code> takes a timeout argument, it makes sense for <code>QCoroIODevice::read()</code>
+to also take (an optional) timeout argument. This and many other operations have gained support for timeout.</p>
+<h3 id="support-for-qthread">Support for <code>QThread</code></h3>
+<p>It's been a while since I added a new wrapper for a Qt class, so QCoro 0.5.0 adds wrapper for <code>QThread</code>. It's
+now possible to <code>co_await</code> thread start and end:</p>
+<div class="highlight"><pre><span></span><code><span class="n">std</span><span class="o">::</span><span class="n">unique_ptr</span><span class="o">&lt;</span><span class="n">QThread</span><span class="o">&gt;</span><span class="w"> </span><span class="kr">thread</span><span class="p">(</span><span class="n">QThread</span><span class="o">::</span><span class="n">create</span><span class="p">([]()</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="p">...</span><span class="w"></span>
+<span class="p">});</span><span class="w"></span>
+<span class="n">ui</span><span class="o">-&gt;</span><span class="n">setLabel</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Starting thread...&quot;</span><span class="p">);</span><span class="w"></span>
+<span class="kr">thread</span><span class="o">-&gt;</span><span class="n">start</span><span class="p">();</span><span class="w"></span>
+<span class="k">co_await</span><span class="w"> </span><span class="n">qCoro</span><span class="p">(</span><span class="kr">thread</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">waitForStarted</span><span class="p">();</span><span class="w"></span>
+<span class="n">ui</span><span class="o">-&gt;</span><span class="n">setLabel</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Calculating...&quot;</span><span class="p">));</span><span class="w"></span>
+<span class="k">co_await</span><span class="w"> </span><span class="n">qCoro</span><span class="p">(</span><span class="kr">thread</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">waitForFinished</span><span class="p">();</span><span class="w"></span>
+<span class="n">ui</span><span class="o">-&gt;</span><span class="n">setLabel</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Finished!&quot;</span><span class="p">));</span><span class="w"></span>
+</code></pre></div>
+<h3 id="full-changelog">Full changelog</h3>
+<ul>
+<li><code>.then()</code> continuation for <code>Task&lt;T&gt;</code> (<a href="https://github.com/danvratil/qcoro/pull/39">#39</a>)</li>
+<li>Fixed namespace scoping (<a href="https://github.com/danvratil/qcoro/pull/45">#45</a>)</li>
+<li>Fixed <code>QCoro::waitFor()</code> getting stuck when coroutine returns synchronously (<a href="https://github.com/danvratil/qcoro/pull/46">#46</a>)</li>
+<li>Fixed -pthread usage in CMake (<a href="https://github.com/danvratil/qcoro/pull/47">#47</a>)</li>
+<li>Produce QMake config files (.pri) for each module (<a href="https://github.com/danvratil/qcoro/commit/e215616be8174438e907710025a7bd71e66a64b5">commit e215616</a>)</li>
+<li>Fix build on platforms where -latomic must be linked explicitly (<a href="https://github.com/danvratil/qcoro/pull/52">#52</a>)</li>
+<li>Return <code>Task&lt;T&gt;</code> from all operations (<a href="https://github.com/danvratil/qcoro/pull/54">#54</a>)</li>
+<li>Add QCoro wrapper for <code>QThread</code> (<a href="https://github.com/danvratil/qcoro/commit/832d931068312c906db6858493fc952b8d984b1c">commit 832d931</a>)</li>
+<li>Many documentation updates</li>
+</ul>
+<p>Thanks to everyone who contributed to QCoro!</p>
 <h2 id="040-2022-01-06">0.4.0 (2022-01-06)</h2>
 <p>Major highlights in this release:</p>
 <ul>
@@ -1243,7 +1410,7 @@ Coroutine support requires tight co-operation between the compiler and standard 
 still considers their coroutine support experimental it expects all coroutine-related types in standard
 library to be located in <code>std::experimental</code> namespace. In GNU's libstdc++, coroutines are fully supported
 and thus implemented in the <code>std</code> namespace. This requires a little bit of extra glue, which is now in place.</p>
-<h3 id="full-changelog">Full changelog</h3>
+<h3 id="full-changelog_1">Full changelog</h3>
 <ul>
 <li>QCoro can now be built with Clang against libstdc++ (<a href="https://github.com/danvratil/qcoro/pull/38">#38</a>, <a href="https://github.com/danvratil/qcoro/issues/22">#22</a>)</li>
 <li>Qt5 and Qt6 builds of QCoro are now co-installable (<a href="https://github.com/danvratil/qcoro/issues/36">#36</a>, <a href="https://github.com/danvratil/qcoro/pull/37">#37</a>)</li>
