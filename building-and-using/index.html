@@ -1105,6 +1105,7 @@ QCoro to customize the build:</p>
 <li><code>-DUSE_QT_VERSION</code> - set to <code>5</code> or <code>6</code> to force a particular version of Qt. When not set the highest available version is used.</li>
 <li><code>-DQCORO_WITH_QTDBUS</code> - whether to compile support for QtDBus (<code>ON</code> by default).</li>
 <li><code>-DQCORO_WITH_QTNETWORK</code> - whether to compile support for QtNetwork (<code>ON</code> by default).</li>
+<li><code>-DQCORO_DISABLE_DEPRECATED_TASK_H</code> - will not build and install the deprecated task.h header (<code>OFF</code> by default).</li>
 </ul>
 <div class="highlight"><pre><span></span><code>mkdir build
 cd build

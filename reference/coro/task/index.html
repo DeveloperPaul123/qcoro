@@ -1085,7 +1085,7 @@ SPDX-License-Identifier: GFDL-1.3-or-later
 
 <h1 id="qcorotask">QCoro::Task</h1>
 <div class="doctable"><table><tr><th>Module</th><td>Coro</td></tr><tr><th>Include</th><td>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;Task&gt;</span><span class="cp"></span>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QCoroTask&gt;</span><span class="cp"></span>
 </code></pre></div>
 </td></tr><tr><th>CMake</th><td>
 <div class="highlight"><pre><span></span><code><span class="n">target_link_libraries</span><span class="p">(</span><span class="n">myapp</span><span class="w"> </span><span class="n">QCoro</span><span class="o">::</span><span class="n">Coro</span><span class="p">)</span><span class="w"></span>
@@ -1102,7 +1102,7 @@ return type <code>QCoro::Task&lt;T&gt;</code>, where <code>T</code> is the type 
 <p>There's no need by the user to interact with or construct <code>QCoro::Task</code> manually, the object is
 constructed automatically by the compiler before the user code is executed. To return a value
 from a coroutine, use <code>co_return</code>, which will store the result in the <code>Task</code> object and leave
-the coroutine. </p>
+the coroutine.</p>
 <div class="highlight"><pre><span></span><code><span class="n">QCoro</span><span class="o">::</span><span class="n">Task</span><span class="o">&lt;</span><span class="n">QString</span><span class="o">&gt;</span><span class="w"> </span><span class="n">getUserName</span><span class="p">(</span><span class="n">UserID</span><span class="w"> </span><span class="n">userId</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
 <span class="w">    </span><span class="p">...</span><span class="w"></span>
 
@@ -1162,7 +1162,7 @@ or <code>co_await</code> the result of the entire chain.</p>
 <p>If the coroutine throws an exception, the exception is re-thrown when the result of the entire
 continuation is <code>co_await</code>ed. If the result of the continuation is not <code>co_await</code>ed, the exception
 is silently ignored.</p>
-<p>If an exception is thrown from the <code>ThenCallback</code>, then the exception is either propagated to the nex 
+<p>If an exception is thrown from the <code>ThenCallback</code>, then the exception is either propagated to the nex
 chained <code>then()</code> continuation or re-thrown if directly <code>co_await</code>ed. If the result is not <code>co_await</code>ed
 and no futher <code>then()</code> continuation is chained after the one that has thrown, then the exception is
 silently ignored.</p>
