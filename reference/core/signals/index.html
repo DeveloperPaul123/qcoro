@@ -17,7 +17,7 @@
     
     
       
-        <title>QLocalSocket - QCoro</title>
+        <title>Qt Signals - QCoro</title>
       
     
     
@@ -73,7 +73,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#qlocalsocket" class="md-skip">
+        <a href="#signals" class="md-skip">
           Skip to content
         </a>
       
@@ -108,7 +108,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              QLocalSocket
+              Qt Signals
             
           </span>
         </div>
@@ -583,12 +583,14 @@
               
   
   
+    
+  
   
     
-    <li class="md-nav__item md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" data-md-state="indeterminate" type="checkbox" id="__nav_4_2" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_2" type="checkbox" id="__nav_4_2" checked>
       
       
       
@@ -614,7 +616,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../../core/">Core</a>
+          <a href="../">Core</a>
           
             <label for="__nav_4_2">
               <span class="md-nav__icon md-icon"></span>
@@ -635,11 +637,52 @@
               
   
   
+    
   
-    <li class="md-nav__item">
-      <a href="../../core/signals/" class="md-nav__link">
+  
+    <li class="md-nav__item md-nav__item--active">
+      
+      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
+      
+      
+        
+      
+      
+        <label class="md-nav__link md-nav__link--active" for="__toc">
+          Qt Signals
+          <span class="md-nav__icon md-icon"></span>
+        </label>
+      
+      <a href="./" class="md-nav__link md-nav__link--active">
         Qt Signals
       </a>
+      
+        
+
+<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
+  
+  
+  
+    
+  
+  
+    <label class="md-nav__title" for="__toc">
+      <span class="md-nav__icon md-icon"></span>
+      Table of contents
+    </label>
+    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
+      
+        <li class="md-nav__item">
+  <a href="#qcorosignallistener" class="md-nav__link">
+    QCoroSignalListener
+  </a>
+  
+</li>
+      
+    </ul>
+  
+</nav>
+      
     </li>
   
 
@@ -651,7 +694,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/qfuture/" class="md-nav__link">
+      <a href="../qfuture/" class="md-nav__link">
         QFuture
       </a>
     </li>
@@ -665,7 +708,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/qiodevice/" class="md-nav__link">
+      <a href="../qiodevice/" class="md-nav__link">
         QIODevice
       </a>
     </li>
@@ -679,7 +722,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/qprocess/" class="md-nav__link">
+      <a href="../qprocess/" class="md-nav__link">
         QProcess
       </a>
     </li>
@@ -693,7 +736,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/qthread/" class="md-nav__link">
+      <a href="../qthread/" class="md-nav__link">
         QThread
       </a>
     </li>
@@ -707,7 +750,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../../core/qtimer/" class="md-nav__link">
+      <a href="../qtimer/" class="md-nav__link">
         QTimer
       </a>
     </li>
@@ -726,14 +769,12 @@
               
   
   
-    
-  
   
     
-    <li class="md-nav__item md-nav__item--active md-nav__item--nested">
+    <li class="md-nav__item md-nav__item--nested">
       
       
-        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" type="checkbox" id="__nav_4_3" checked>
+        <input class="md-nav__toggle md-toggle" data-md-toggle="__nav_4_3" data-md-state="indeterminate" type="checkbox" id="__nav_4_3" checked>
       
       
       
@@ -755,7 +796,7 @@
         
         
         <div class="md-nav__link md-nav__link--index ">
-          <a href="../">Network</a>
+          <a href="../../network/">Network</a>
           
             <label for="__nav_4_3">
               <span class="md-nav__icon md-icon"></span>
@@ -778,7 +819,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../qabstractsocket/" class="md-nav__link">
+      <a href="../../network/qabstractsocket/" class="md-nav__link">
         QAbstractSocket
       </a>
     </li>
@@ -790,73 +831,11 @@
               
   
   
-    
   
-  
-    <li class="md-nav__item md-nav__item--active">
-      
-      <input class="md-nav__toggle md-toggle" data-md-toggle="toc" type="checkbox" id="__toc">
-      
-      
-        
-      
-      
-        <label class="md-nav__link md-nav__link--active" for="__toc">
-          QLocalSocket
-          <span class="md-nav__icon md-icon"></span>
-        </label>
-      
-      <a href="./" class="md-nav__link md-nav__link--active">
+    <li class="md-nav__item">
+      <a href="../../network/qlocalsocket/" class="md-nav__link">
         QLocalSocket
       </a>
-      
-        
-
-<nav class="md-nav md-nav--secondary" aria-label="Table of contents">
-  
-  
-  
-    
-  
-  
-    <label class="md-nav__title" for="__toc">
-      <span class="md-nav__icon md-icon"></span>
-      Table of contents
-    </label>
-    <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
-      
-        <li class="md-nav__item">
-  <a href="#waitforconnected" class="md-nav__link">
-    waitForConnected()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#waitfordisconnected" class="md-nav__link">
-    waitForDisconnected()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#connecttoserver" class="md-nav__link">
-    connectToServer()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
-  </a>
-  
-</li>
-      
-    </ul>
-  
-</nav>
-      
     </li>
   
 
@@ -868,7 +847,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../qnetworkreply/" class="md-nav__link">
+      <a href="../../network/qnetworkreply/" class="md-nav__link">
         QNetworkReply
       </a>
     </li>
@@ -882,7 +861,7 @@
   
   
     <li class="md-nav__item">
-      <a href="../qtcpserver/" class="md-nav__link">
+      <a href="../../network/qtcpserver/" class="md-nav__link">
         QTcpServer
       </a>
     </li>
@@ -1076,29 +1055,8 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#waitforconnected" class="md-nav__link">
-    waitForConnected()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#waitfordisconnected" class="md-nav__link">
-    waitForDisconnected()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#connecttoserver" class="md-nav__link">
-    connectToServer()
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#examples" class="md-nav__link">
-    Examples
+  <a href="#qcorosignallistener" class="md-nav__link">
+    QCoroSignalListener
   </a>
   
 </li>
@@ -1115,7 +1073,7 @@
             <article class="md-content__inner md-typeset">
               
                 
-  <a href="https://github.com/danvratil/qcoro/edit/main/docs/reference/network/qlocalsocket.md" title="Edit this page" class="md-content__button md-icon">
+  <a href="https://github.com/danvratil/qcoro/edit/main/docs/reference/core/signals.md" title="Edit this page" class="md-content__button md-icon">
     <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20.71 7.04c.39-.39.39-1.04 0-1.41l-2.34-2.34c-.37-.39-1.02-.39-1.41 0l-1.84 1.83 3.75 3.75M3 17.25V21h3.75L17.81 9.93l-3.75-3.75L3 17.25Z"/></svg>
   </a>
 
@@ -1127,81 +1085,90 @@ SPDX-FileCopyrightText: 2022 Daniel Vrátil <dvratil@kde.org>
 SPDX-License-Identifier: GFDL-1.3-or-later
 -->
 
-<h1 id="qlocalsocket">QLocalSocket</h1>
-<div class="doctable"><table><tr><th>Module</th><td>Network</td></tr><tr><th>Include</th><td>
-<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QCoroLocalSocket&gt;</span><span class="cp"></span>
+<div class="doctable"><table><tr><th>Module</th><td>Core</td></tr><tr><th>Include</th><td>
+<div class="highlight"><pre><span></span><code><span class="cp">#include</span><span class="w"> </span><span class="cpf">&lt;QCoroSignal&gt;</span><span class="cp"></span>
 </code></pre></div>
 </td></tr><tr><th>CMake</th><td>
-<div class="highlight"><pre><span></span><code><span class="n">target_link_libraries</span><span class="p">(</span><span class="n">myapp</span><span class="w"> </span><span class="n">QCoro</span><span class="o">::</span><span class="n">Network</span><span class="p">)</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">target_link_libraries</span><span class="p">(</span><span class="n">myapp</span><span class="w"> </span><span class="n">QCoro</span><span class="o">::</span><span class="n">Core</span><span class="p">)</span><span class="w"></span>
 </code></pre></div>
 </td></tr><tr><th>QMake</th><td>
-<div class="highlight"><pre><span></span><code><span class="n">QT</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">QCoroNetwork</span><span class="w"></span>
+<div class="highlight"><pre><span></span><code><span class="n">QT</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">QCoroCore</span><span class="w"></span>
 </code></pre></div>
-</td></tr><tr><th>Inherits</th><td><a href="../../core/qiodevice">QCoroIODevice</a></td></tr></table></div>
+</td></tr></table></div>
 
-<p><a href="https://doc.qt.io/qt-5/qlocalsocket.html"><code>QLocalSocket</code></a> has several potentially asynchronous operations
-in addition to reading and writing, which are provided by <a href="https://doc.qt.io/qt-5/qiodevice.html"><code>QIODevice</code></a>
-baseclass and can be used with coroutines thanks to QCoro's <a href="../../core/qiodevice/"><code>QCoroIODevice</code></a>.
-Those operations are connecting to and disconnecting from the server.</p>
-<p>Since <code>QLocalSocket</code> doesn't provide the ability to <code>co_await</code> those operations, QCoro provides
- a wrapper calss <code>QCoroLocalSocket</code>. To wrap a <code>QLocalSocket</code> object into the <code>QCoroLocalSocket</code>
- wrapper, use <a href="../../coro/coro/"><code>qCoro()</code></a>:</p>
-<div class="highlight"><pre><span></span><code><span class="n">QCoroLocalSocket</span><span class="w"> </span><span class="nf">qCoro</span><span class="p">(</span><span class="n">QLocalSocket</span><span class="w"> </span><span class="o">&amp;</span><span class="p">);</span><span class="w"></span>
-<span class="n">QCoroLocalSocket</span><span class="w"> </span><span class="nf">qCoro</span><span class="p">(</span><span class="n">QLocalSocket</span><span class="w"> </span><span class="o">*</span><span class="p">);</span><span class="w"></span>
+<h1 id="signals">Signals</h1>
+<p>It's possible to <code>co_await</code> a single signal emission through a special
+overload of the <a href="../../coro/coro/"><code>qCoro()</code></a> function. The below function returns
+an awaitable that will suspend the current coroutine until the specified signal
+is emitted.</p>
+<div class="highlight"><pre><span></span><code><span class="n">Task</span><span class="o">&lt;</span><span class="n">SignalResult</span><span class="o">&gt;</span><span class="w"> </span><span class="n">qCoro</span><span class="p">(</span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">QtSignalPtr</span><span class="w"> </span><span class="n">ptr</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
-<p>Same as <code>QLocalSocket</code> is a subclass of <code>QIODevice</code>, <code>QCoroLocalSocket</code> subclasses
-<a href="../../core/qiodevice/"><code>QCoroIODevice</code></a>, so it also provides the awaitable interface for selected
-<code>QIODevice</code> functions. See <a href="../../core/qiodevice/"><code>QCoroIODevice</code></a> documentation for details.</p>
-<h2 id="waitforconnected"><code>waitForConnected()</code></h2>
-<p>Waits for the socket to connect or until it times out. Returns <code>bool</code> indicating whether
-connection has been established (<code>true</code>) or whether the operation has timed out or another
-error has occurred (<code>false</code>). Returns immeditelly if the socket is already in connected
-state.</p>
-<p>If the timeout is -1, the operation will never time out.</p>
-<p>See documentation for <a href="https://doc.qt.io/qt-5/qlocalsocket.html#waitForConnected"><code>QLocalSocket::waitForConnected()</code></a>
-for details.</p>
-<div class="highlight"><pre><span></span><code><span class="n">QCoro</span><span class="o">::</span><span class="n">Task</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QCoroLocalSocket</span><span class="o">::</span><span class="n">waitForConnected</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">timeout_msecs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30&#39;000</span><span class="p">);</span><span class="w"></span>
-<span class="n">QCoro</span><span class="o">::</span><span class="n">Task</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QCoroLocalSocket</span><span class="o">::</span><span class="n">waitForConnected</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="w"> </span><span class="n">timeout</span><span class="p">);</span><span class="w"></span>
+<p>The arguments are a pointer to a QObject-derived object and a pointer
+to a the object's signal to connect to. Note that if the object is destroyed
+while being <code>co_await</code>ed, the coroutine will never be resumed.</p>
+<p>The returned awaitable produces the signal's arguments. That is, if the
+signal has no arguments, the result of the awaitable will be <code>void</code>. If
+the signal has exactly one argument, then the awaitable produces the value
+of the argument. If the signal has more than one arguments, then the result
+of the awaitable is a <code>std::tuple</code> with all the arguments.</p>
+<p>Example:
+<div class="highlight"><pre><span></span><code>// void signal
+co_await qCoro(timer, &amp;QTimer::timeout);
+
+// single-argument signal
+const QUrl url = co_await qCoro(reply, &amp;QNetworkReply::redirected);
+
+// multi-argument signal, captured using structured bindings
+const auto [exitCode, exitStatus] = co_await qCoro(process, &amp;QProcess::finished);
+</code></pre></div></p>
+<div class="highlight"><pre><span></span><code><span class="n">Task</span><span class="o">&lt;</span><span class="n">std</span><span class="o">::</span><span class="n">optional</span><span class="o">&lt;</span><span class="n">SignalResult</span><span class="o">&gt;&gt;</span><span class="w"> </span><span class="n">qCoro</span><span class="p">(</span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">QtSignalPtr</span><span class="w"> </span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="w"> </span><span class="n">timeout</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
-<h2 id="waitfordisconnected"><code>waitForDisconnected()</code></h2>
-<p>Waits for the socket to disconnect from the server or until the operation times out.
-Returns immediatelly if the socket is not in connected state.</p>
-<p>If the timeout is -1, the operation will never time out.</p>
-<p>See documentation for <a href="https://doc.qt.io/qt-5/qlocalsocket.html#waitForDisconnected"><code>QLocalSocket::waitForDisconnected()</code></a>
-for details.</p>
-<div class="highlight"><pre><span></span><code><span class="n">QCoro</span><span class="o">::</span><span class="n">Task</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QCoroLocalSocket</span><span class="o">::</span><span class="n">waitForDisconnected</span><span class="p">(</span><span class="n">timeout_msecs</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">30&#39;000</span><span class="p">);</span><span class="w"></span>
-<span class="n">QCoro</span><span class="o">::</span><span class="n">Task</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QCoroLocalSocket</span><span class="o">::</span><span class="n">waitForDisconnected</span><span class="p">(</span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="w"> </span><span class="n">timeout</span><span class="p">);</span><span class="w"></span>
+<p>An overload that behaves similar to the two-argument overload, but takes an additional
+<code>timeout</code> argument. If the signal is not emitted within the specified timeout,  the returned
+awaitable produces an empty <code>std::optional</code>. Otherwise the return type behaves the same way
+as the two-argument overload.</p>
+<h2 id="qcorosignallistener">QCoroSignalListener</h2>
+<p>A helper function that creates an <a href="../../coro/asyncgenerator/"><code>AsyncGenerator</code></a> which yields a value
+whenever the signal is emitted.</p>
+<div class="highlight"><pre><span></span><code><span class="n">QCoro</span><span class="o">::</span><span class="n">AsyncGenerator</span><span class="o">&lt;</span><span class="n">SignalArgs</span><span class="o">&gt;</span><span class="w"> </span><span class="n">qCoroSignalListener</span><span class="p">(</span><span class="n">QObject</span><span class="w"> </span><span class="o">*</span><span class="n">obj</span><span class="p">,</span><span class="w"> </span><span class="n">QtSignalPtr</span><span class="w"> </span><span class="n">ptr</span><span class="p">,</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="w"> </span><span class="n">timeout</span><span class="p">);</span><span class="w"></span>
 </code></pre></div>
-<h2 id="connecttoserver"><code>connectToServer()</code></h2>
-<p><code>QCoroLocalSocket</code> provides an additional method called <code>connectToServer()</code> which is equivalent
-to calling <code>QLocalSocket::connectToServer()</code> followed by <code>QLocalSocket::waitForConnected()</code>. This
-operation is co_awaitable as well.</p>
-<p>If the timeout is -1, the operation will never time out.</p>
-<p>See the documentation for <a href="https://doc.qt.io/qt-5/qlocalsocket.html#connectToServer"><code>QLocalSocket::connectToServer()</code></a> and
-<a href="https://doc.qt.io/qt-5/qlocalsocket.html#waitForConnected"><code>QLocalSocket::waitForConnected()</code></a> for details.</p>
-<div class="highlight"><pre><span></span><code><span class="n">QCoro</span><span class="o">::</span><span class="n">Task</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QCoroLocalSocket</span><span class="o">::</span><span class="n">connectToServer</span><span class="p">(</span><span class="n">QIODevice</span><span class="o">::</span><span class="n">OpenMode</span><span class="w"> </span><span class="n">openMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QIODevice</span><span class="o">::</span><span class="n">ReadOnly</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                                    </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="w"> </span><span class="n">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">30</span><span class="p">));</span><span class="w"></span>
-<span class="n">QCoro</span><span class="o">::</span><span class="n">Taks</span><span class="o">&lt;</span><span class="kt">bool</span><span class="o">&gt;</span><span class="w"> </span><span class="n">QCoroLocalSocket</span><span class="o">::</span><span class="n">connectToServer</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="n">name</span><span class="p">,</span><span class="w"> </span><span class="n">QIODevice</span><span class="o">::</span><span class="n">OpenMode</span><span class="w"> </span><span class="n">openMode</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">QIODevice</span><span class="o">::</span><span class="n">ReadOnly</span><span class="p">,</span><span class="w"></span>
-<span class="w">                                                    </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">milliseconds</span><span class="w"> </span><span class="n">timeout</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">std</span><span class="o">::</span><span class="n">chrono</span><span class="o">::</span><span class="n">seconds</span><span class="p">(</span><span class="mi">30</span><span class="p">));</span><span class="w"></span>
-</code></pre></div>
-<h2 id="examples">Examples</h2>
-<div class="highlight"><pre><span></span><code><span class="n">QCoro</span><span class="o">::</span><span class="n">Task</span><span class="o">&lt;</span><span class="n">QByteArray</span><span class="o">&gt;</span><span class="w"> </span><span class="n">requestDataFromServer</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="n">serverName</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">    </span><span class="n">QLocalSocket</span><span class="w"> </span><span class="n">socket</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="k">co_await</span><span class="w"> </span><span class="n">qCoro</span><span class="p">(</span><span class="n">socket</span><span class="p">).</span><span class="n">connectToServer</span><span class="p">(</span><span class="n">serverName</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">qWarning</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Failed to connect to the server&quot;</span><span class="p">;</span><span class="w"></span>
-<span class="w">        </span><span class="k">co_return</span><span class="w"> </span><span class="n">QByteArray</span><span class="p">{};</span><span class="w"></span>
+<p>The function takes up to three arguments, the <code>obj</code> and <code>ptr</code> are a QObject-derived object and
+a pointer to a signal member function to connect to. The third <code>timeout</code> argument is optional.
+When the timeout is set, the generator will end if the signal is not emitted within the specified
+timeout. When not set, or set to -1, the generator will never terminate on its own, even if
+the <code>obj</code> QObject is destroyed!</p>
+<p>The generator produces all signal emissions, even those that ocur in between the generator being
+<code>co_await</code>ed. In the example below, even when the <code>QNetworkReply::downloadProgress()</code> signal is
+emitted while asynchronously processing something in the middle of the <code>while</code> loop body, the
+emission will not be lost. It will be enqueued, and returned synchronously with the next
+<code>co_await ++it</code> call.</p>
+<div class="highlight"><pre><span></span><code><span class="k">auto</span><span class="w"> </span><span class="n">listener</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">qCoroSignalListener</span><span class="p">(</span><span class="n">networkReply</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">QNetworkReply</span><span class="o">::</span><span class="n">downloadProgress</span><span class="p">);</span><span class="w"></span>
+<span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">co_await</span><span class="w"> </span><span class="n">listener</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"> </span><span class="c1">// waits for first emission</span>
+<span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">listener</span><span class="p">.</span><span class="n">end</span><span class="p">()</span><span class="w"> </span><span class="o">&amp;&amp;</span><span class="w"> </span><span class="n">networkReply</span><span class="o">-&gt;</span><span class="n">isRunning</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="p">[</span><span class="n">received</span><span class="p">,</span><span class="w"> </span><span class="n">total</span><span class="p">]</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="o">*</span><span class="n">it</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// do something with results</span>
+<span class="w">    </span><span class="c1">//...</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">received</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">networkReply</span><span class="o">-&gt;</span><span class="n">isFinished</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
 <span class="w">    </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">socket</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="s">&quot;SEND ME DATA!&quot;</span><span class="p">);</span><span class="w"></span>
-
-<span class="w">    </span><span class="n">QByteArray</span><span class="w"> </span><span class="n">data</span><span class="p">;</span><span class="w"></span>
-<span class="w">    </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="n">data</span><span class="p">.</span><span class="n">endsWith</span><span class="p">(</span><span class="s">&quot;</span><span class="se">\r\n</span><span class="s">.</span><span class="se">\r\n</span><span class="s">&quot;</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
-<span class="w">        </span><span class="n">data</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="k">co_await</span><span class="w"> </span><span class="n">qCoro</span><span class="p">(</span><span class="n">socket</span><span class="p">).</span><span class="n">readAll</span><span class="p">();</span><span class="w"></span>
-<span class="w">    </span><span class="p">}</span><span class="w"></span>
-
-<span class="w">    </span><span class="k">co_return</span><span class="w"> </span><span class="n">data</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="k">co_await</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">;</span><span class="w"> </span><span class="c1">// waits for next signal emission</span>
 <span class="p">}</span><span class="w"></span>
 </code></pre></div>
+<p>Alternatively, it's possible to use <code>QCORO_FOREACH</code> to look over the generator:</p>
+<div class="highlight"><pre><span></span><code><span class="n">QCORO_FOREACH</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="p">[</span><span class="n">received</span><span class="p">,</span><span class="w"> </span><span class="n">total</span><span class="p">],</span><span class="w"> </span><span class="n">qCoroSignalListener</span><span class="p">(</span><span class="n">reply</span><span class="p">,</span><span class="w"> </span><span class="o">&amp;</span><span class="n">QNetworkReply</span><span class="o">::</span><span class="n">downloadProgress</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// do something with `received` and `total` values</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">received</span><span class="w"> </span><span class="o">==</span><span class="w"> </span><span class="n">total</span><span class="w"> </span><span class="o">||</span><span class="w"> </span><span class="n">reply</span><span class="o">-&gt;</span><span class="n">isFinished</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<div class="admonition warning">
+<p class="admonition-title">Listener doesn't stop listening until destroyed.</p>
+<p>Keep in mind that the <code>listener</code> generator will keep listening and collecting the
+signal emissions until it is destroyed, even if you are no longer actively iterating
+over the generator. It is recommended that you destroy the generator as soon as possible
+when you no longer need it.</p>
+</div>
 
               
             </article>
@@ -1215,7 +1182,7 @@ operation is co_awaitable as well.</p>
     <nav class="md-footer__inner md-grid" aria-label="Footer">
       
         
-        <a href="../qabstractsocket/" class="md-footer__link md-footer__link--prev" aria-label="Previous: QAbstractSocket" rel="prev">
+        <a href="../" class="md-footer__link md-footer__link--prev" aria-label="Previous: Index" rel="prev">
           <div class="md-footer__button md-icon">
             <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 11v2H8l5.5 5.5-1.42 1.42L4.16 12l7.92-7.92L13.5 5.5 8 11h12Z"/></svg>
           </div>
@@ -1224,20 +1191,20 @@ operation is co_awaitable as well.</p>
               <span class="md-footer__direction">
                 Previous
               </span>
-              QAbstractSocket
+              Index
             </div>
           </div>
         </a>
       
       
         
-        <a href="../qnetworkreply/" class="md-footer__link md-footer__link--next" aria-label="Next: QNetworkReply" rel="next">
+        <a href="../qfuture/" class="md-footer__link md-footer__link--next" aria-label="Next: QFuture" rel="next">
           <div class="md-footer__title">
             <div class="md-ellipsis">
               <span class="md-footer__direction">
                 Next
               </span>
-              QNetworkReply
+              QFuture
             </div>
           </div>
           <div class="md-footer__button md-icon">
