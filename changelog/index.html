@@ -1039,6 +1039,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#060-2022-07-09" class="md-nav__link">
+    0.6.0 (2022-07-09)
+  </a>
+  
+    <nav class="md-nav" aria-label="0.6.0 (2022-07-09)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generator-support" class="md-nav__link">
+    Generator support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-qcorowebsockets-module" class="md-nav__link">
+    New QCoroWebSockets module
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deprecated-tasksh-header" class="md-nav__link">
+    Deprecated tasks.h header
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clang-cl-and-apple-clang-support" class="md-nav__link">
+    Clang-cl and apple-clang support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-changelog" class="md-nav__link">
+    Full changelog
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#051-2022-04-27" class="md-nav__link">
     0.5.1 (2022-04-27)
   </a>
@@ -1082,7 +1130,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#full-changelog" class="md-nav__link">
+  <a href="#full-changelog_1" class="md-nav__link">
     Full changelog
   </a>
   
@@ -1123,7 +1171,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#full-changelog_1" class="md-nav__link">
+  <a href="#full-changelog_2" class="md-nav__link">
     Full changelog
   </a>
   
@@ -1276,6 +1324,54 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
+  <a href="#060-2022-07-09" class="md-nav__link">
+    0.6.0 (2022-07-09)
+  </a>
+  
+    <nav class="md-nav" aria-label="0.6.0 (2022-07-09)">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#generator-support" class="md-nav__link">
+    Generator support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#new-qcorowebsockets-module" class="md-nav__link">
+    New QCoroWebSockets module
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#deprecated-tasksh-header" class="md-nav__link">
+    Deprecated tasks.h header
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#clang-cl-and-apple-clang-support" class="md-nav__link">
+    Clang-cl and apple-clang support
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
+  <a href="#full-changelog" class="md-nav__link">
+    Full changelog
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
   <a href="#051-2022-04-27" class="md-nav__link">
     0.5.1 (2022-04-27)
   </a>
@@ -1319,7 +1415,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#full-changelog" class="md-nav__link">
+  <a href="#full-changelog_1" class="md-nav__link">
     Full changelog
   </a>
   
@@ -1360,7 +1456,7 @@
 </li>
         
           <li class="md-nav__item">
-  <a href="#full-changelog_1" class="md-nav__link">
+  <a href="#full-changelog_2" class="md-nav__link">
     Full changelog
   </a>
   
@@ -1451,9 +1547,189 @@ SPDX-License-Identifier: GFDL-1.3-or-later
 -->
 
 <h1 id="changelog">Changelog</h1>
+<h2 id="060-2022-07-09">0.6.0 (2022-07-09)</h2>
+<p>This release brings several major new features alongside a bunch of bugfixes and
+improvements inside QCoro.</p>
+<p>The three major features are:</p>
+<ul>
+<li>Generator support</li>
+<li>New QCoroWebSockets module</li>
+<li>Deprecated task.h</li>
+<li>Clang-cl and apple-clang support</li>
+</ul>
+<p>🎉 Starting with 0.6.0 I no longer consider this library to be experimental
+(since clearly the experiment worked :-)) and its API to be stable enough for
+general use. 🎉</p>
+<p>As always, big thank you to everyone who report issues and contributed to QCoro.
+Your help is much appreciated!</p>
+<h3 id="generator-support">Generator support</h3>
+<p>Unlike regular functions (or <code>QCoro::Task&lt;&gt;</code>-based coroutines) which can only ever
+produce at most single result (through <code>return</code> or <code>co_return</code> statement), generators
+can yield results repeatedly without terminating. In QCoro we have two types of generators:
+synchronous and asynchronous. Synchronous means that the generator produces each value
+synchronously. In QCoro those are implemented as <code>QCoro::Generator&lt;T&gt;</code>:</p>
+<div class="highlight"><pre><span></span><code><span class="c1">// A generator that produces a sequence of numbers from 0 to `end`.</span>
+<span class="n">QCoro</span><span class="o">::</span><span class="n">Generator</span><span class="o">&lt;</span><span class="kt">int</span><span class="o">&gt;</span><span class="w"> </span><span class="n">sequence</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">end</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"> </span><span class="n">i</span><span class="w"> </span><span class="o">&lt;=</span><span class="w"> </span><span class="n">end</span><span class="p">;</span><span class="w"> </span><span class="o">++</span><span class="n">i</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="c1">// Produces current value of `i` and suspends.</span>
+<span class="w">        </span><span class="k">co_yield</span><span class="w"> </span><span class="n">i</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// End the iterator</span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="kt">int</span><span class="w"> </span><span class="n">sumSequence</span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">end</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="kt">int</span><span class="w"> </span><span class="n">sum</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">0</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Loops over the returned Generator, resuming the generator on each iterator</span>
+<span class="w">    </span><span class="c1">// so it can produce a value that we then consume.</span>
+<span class="w">    </span><span class="k">for</span><span class="w"> </span><span class="p">(</span><span class="kt">int</span><span class="w"> </span><span class="n">value</span><span class="w"> </span><span class="o">:</span><span class="w"> </span><span class="n">sequence</span><span class="p">(</span><span class="n">end</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">        </span><span class="n">sum</span><span class="w"> </span><span class="o">+=</span><span class="w"> </span><span class="n">value</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">return</span><span class="w"> </span><span class="n">sum</span><span class="p">;</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>The <code>Generator</code> interface implements <code>begin()</code> and <code>end()</code> methods which produce an
+iterator-like type. When the iterator is incremented, the generator is resumed to yield
+a value and then suspended again. The iterator-like interface is not mandated by the C++
+standard (the C++ standard provides no requirements for generators), but it is an
+intentional design choice, since it makes it possible to use the generators with existing
+language constructs as well as standard-library and Qt features.</p>
+<p>You can find more details about synchronous generators in the <a href="https://qcoro.dvratil.cz/reference/coro/generator/"><code>QCoro::Generator&lt;T&gt;</code>
+documentation</a>.</p>
+<p>Asynchronous generators work in a similar way, but they produce value asynchronously,
+that is the result of the generator must be <code>co_await</code>ed by the caller.</p>
+<div class="highlight"><pre><span></span><code><span class="n">QCoro</span><span class="o">::</span><span class="n">AsyncGenerator</span><span class="o">&lt;</span><span class="n">QUrl</span><span class="o">&gt;</span><span class="w"> </span><span class="n">paginator</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">QUrl</span><span class="w"> </span><span class="o">&amp;</span><span class="n">baseUrl</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="n">QUrl</span><span class="w"> </span><span class="n">pageUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">baseUrl</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="n">Q_FOREVER</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">pageUrl</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">co_await</span><span class="w"> </span><span class="n">getNextPage</span><span class="p">(</span><span class="n">pageUrl</span><span class="p">);</span><span class="w"> </span><span class="c1">// co_awaits next page URL</span>
+<span class="w">    </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="n">pageUrl</span><span class="p">.</span><span class="n">isNull</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// if empty, we reached the last page</span>
+<span class="w">      </span><span class="k">break</span><span class="p">;</span><span class="w"> </span><span class="c1">// leave the loop</span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">    </span><span class="k">co_yield</span><span class="w"> </span><span class="n">pageUrl</span><span class="p">;</span><span class="w"> </span><span class="c1">// finally, yield the value and suspend</span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// end the generator</span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">QCoro</span><span class="o">::</span><span class="n">AsyncGenerator</span><span class="o">&lt;</span><span class="n">QString</span><span class="o">&gt;</span><span class="w"> </span><span class="n">pageReader</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">QUrl</span><span class="w"> </span><span class="o">&amp;</span><span class="n">baseUrl</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Create a new generator</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">generator</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">paginator</span><span class="p">(</span><span class="n">baseUrl</span><span class="p">);</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// Wait for the first value</span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">it</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">co_await</span><span class="w"> </span><span class="n">generator</span><span class="p">.</span><span class="n">begin</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="k">auto</span><span class="w"> </span><span class="n">end</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">generator</span><span class="p">.</span><span class="n">end</span><span class="p">();</span><span class="w"></span>
+<span class="w">  </span><span class="k">while</span><span class="w"> </span><span class="p">(</span><span class="n">it</span><span class="w"> </span><span class="o">!=</span><span class="w"> </span><span class="n">end</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"> </span><span class="c1">// while the `it` iterator is valid...</span>
+<span class="w">    </span><span class="c1">// Asynchronously retrieve the page content</span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">content</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="k">co_await</span><span class="w"> </span><span class="n">fetchPageContent</span><span class="p">(</span><span class="o">*</span><span class="n">it</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// Yield it to the caller, then suspend</span>
+<span class="w">    </span><span class="k">co_yield</span><span class="w"> </span><span class="n">content</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// When resumed, wait for the paginator generator to produce another value</span>
+<span class="w">    </span><span class="k">co_await</span><span class="w"> </span><span class="o">++</span><span class="n">it</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+
+<span class="n">QCoro</span><span class="o">::</span><span class="n">Task</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">downloader</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">QUrl</span><span class="w"> </span><span class="o">&amp;</span><span class="n">baseUrl</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="kt">int</span><span class="w"> </span><span class="n">page</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="mi">1</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="c1">// `QCORO_FOREACH` is like `Q_FOREACH` for asynchronous iterators</span>
+<span class="w">  </span><span class="n">QCORO_FOREACH</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="n">page</span><span class="p">,</span><span class="w"> </span><span class="n">pageReader</span><span class="p">(</span><span class="n">baseUrl</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="c1">// When value is finally produced, write it to a file</span>
+<span class="w">    </span><span class="n">QFile</span><span class="w"> </span><span class="nf">file</span><span class="p">(</span><span class="n">QStringLiteral</span><span class="p">(</span><span class="s">&quot;page%1.html&quot;</span><span class="p">).</span><span class="n">arg</span><span class="p">(</span><span class="n">page</span><span class="p">));</span><span class="w"></span>
+<span class="w">    </span><span class="n">file</span><span class="p">.</span><span class="n">open</span><span class="p">(</span><span class="n">QIODevice</span><span class="o">::</span><span class="n">WriteOnly</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="n">file</span><span class="p">.</span><span class="n">write</span><span class="p">(</span><span class="n">page</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="o">++</span><span class="n">page</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+<p>Async generators also have <code>begin()</code> and <code>end()</code> methods which provide an asynchronous
+iterator-like types. For one, the <code>begin()</code> method itself is a coroutine and must be
+<code>co_await</code>ed to obtain the initial iterator. The increment operation of the iterator
+must then be <code>co_await</code>ed as well to obtain the iterator for the next value.
+Unfortunately, asynchronous iterator cannot be used with ranged-based for loops, so
+QCoro provides <a href="https://qcoro.dvratil.cz/reference/coro/asyncgenerator/#qcoro_foreach"><code>QCORO_FOREACH</code> macro</a> to make using asynchronous generators simpler.</p>
+<p>Read the <a href="https://qcoro.dvratil.cz/reference/coro/asyncgenerator">documentation for <code>QCoro::AsyncGenerator&lt;T&gt;</code></a> for more details.</p>
+<h3 id="new-qcorowebsockets-module">New QCoroWebSockets module</h3>
+<p>The QCoroWebSockets module provides QCoro wrappers for <code>QWebSocket</code> and <code>QWebSocketServer</code>
+classes to make them usable with coroutines. Like the other modules, it's a standalone
+shared or static library that you must explicitly link against in order to be able to use
+it, so you don't have to worry that QCoro would pull websockets dependency into your
+project if you don't want to.</p>
+<p><div class="highlight"><pre><span></span><code><span class="n">QCoro</span><span class="o">::</span><span class="n">Task</span><span class="o">&lt;&gt;</span><span class="w"> </span><span class="n">ChatApp</span><span class="o">::</span><span class="n">handleNotifications</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">QUrl</span><span class="w"> </span><span class="o">&amp;</span><span class="n">wsServer</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">  </span><span class="k">if</span><span class="w"> </span><span class="p">(</span><span class="o">!</span><span class="k">co_await</span><span class="w"> </span><span class="n">qCoro</span><span class="p">(</span><span class="n">mWebSocket</span><span class="p">).</span><span class="n">open</span><span class="p">(</span><span class="n">wsServer</span><span class="p">))</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="n">qWarning</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Failed to open websocket connection to&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">wsServer</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">mWebSocket</span><span class="o">-&gt;</span><span class="n">errorString</span><span class="p">();</span><span class="w"></span>
+<span class="w">    </span><span class="k">co_return</span><span class="p">;</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="n">qDebug</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Connected to&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">wsServer</span><span class="p">;</span><span class="w"></span>
+
+<span class="w">  </span><span class="c1">// Loops whenever a message is received until the socket is disconnected</span>
+<span class="w">  </span><span class="n">QCORO_FOREACH</span><span class="p">(</span><span class="k">const</span><span class="w"> </span><span class="n">QString</span><span class="w"> </span><span class="o">&amp;</span><span class="n">rawMessage</span><span class="p">,</span><span class="w"> </span><span class="n">qCoro</span><span class="p">(</span><span class="n">mWebSocket</span><span class="p">).</span><span class="n">textMessages</span><span class="p">())</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">    </span><span class="k">const</span><span class="w"> </span><span class="k">auto</span><span class="w"> </span><span class="n">message</span><span class="w"> </span><span class="o">=</span><span class="w"> </span><span class="n">parseMessage</span><span class="p">(</span><span class="n">rawMessage</span><span class="p">);</span><span class="w"></span>
+<span class="w">    </span><span class="k">switch</span><span class="w"> </span><span class="p">(</span><span class="n">message</span><span class="p">.</span><span class="n">type</span><span class="p">)</span><span class="w"> </span><span class="p">{</span><span class="w"></span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="n">MessageType</span><span class="o">::</span><span class="n">ChatMessage</span><span class="o">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">handleChatMessage</span><span class="p">(</span><span class="n">message</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="n">MessageType</span><span class="o">::</span><span class="n">PresenceChange</span><span class="o">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">handlePresenceChange</span><span class="p">(</span><span class="n">message</span><span class="p">);</span><span class="w"></span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">      </span><span class="k">case</span><span class="w"> </span><span class="n">MessageType</span><span class="o">::</span><span class="n">Invalid</span><span class="o">:</span><span class="w"></span>
+<span class="w">        </span><span class="n">qWarning</span><span class="p">()</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="s">&quot;Received an invalid message:&quot;</span><span class="w"> </span><span class="o">&lt;&lt;</span><span class="w"> </span><span class="n">message</span><span class="p">.</span><span class="n">error</span><span class="p">;</span><span class="w"></span>
+<span class="w">        </span><span class="k">break</span><span class="p">;</span><span class="w"></span>
+<span class="w">    </span><span class="p">}</span><span class="w"></span>
+<span class="w">  </span><span class="p">}</span><span class="w"></span>
+<span class="p">}</span><span class="w"></span>
+</code></pre></div>
+The <code>textMessages()</code> methods returns an asynchronous generator, which yields the message
+whenever it arrives. The messages are received and enqueued as long as the generator
+object exists. The difference between using a generator and just <code>co_await</code>ing the next
+emission of the <code>QWebSocket::textMessage()</code> signal is that the generator holds a connection
+to the signal for its entire lifetime, so no signal emission is lost. If we were only
+<code>co_await</code>ing a singal emission, any message that is received before we start <code>co_await</code>ing
+again after handling the current message would be lost.</p>
+<p>You can find more details about the <code>QCoroWebSocket</code> and <code>QCoroWebSocketSever</code>
+in the <a href="https://qcoro.dvratil.cz/reference/websockets/">QCoro's websocket module documentation</a>.</p>
+<p>You can build QCoro without the WebSockets module by passing <code>-DQCORO_WITH_QTWEBSOCKETS=OFF</code>
+to CMake.</p>
+<h3 id="deprecated-tasksh-header">Deprecated tasks.h header</h3>
+<p>The <code>task.h</code> header and it's camelcase variant <code>Task</code> been deprecated in QCoro 0.6.0
+in favor of <code>qcorotask.h</code> (and <code>QCoroTask</code> camelcase version). The main reasons are to
+avoid such a generic name in a library and to make the name consistent with the rest of
+QCoro's public headers which all start with <code>qcoro</code> (or <code>QCoro</code>) prefix.</p>
+<p>The old header is still present and fully functional, but including it will produce a
+warning that you should port your code to use <code>qcorotask.h</code>. You can suppress the warning
+by defining <code>QCORO_NO_WARN_DEPRECATED_TASK_H</code> in the compiler definitions:</p>
+<p>CMake:
+<div class="highlight"><pre><span></span><code><span class="nb">add_compiler_definitions</span><span class="p">(</span><span class="s">QCORO_NO_WARN_DEPRECATED_TASK_H</span><span class="p">)</span>
+</code></pre></div></p>
+<p>QMake
+<div class="highlight"><pre><span></span><code>DEFINES += QCORO_NO_WARN_DEPRECATED_TASK_H
+</code></pre></div></p>
+<p>The header file will be removed at some point in the future, at latest in the 1.0 release.</p>
+<p>You can also pass <code>-DQCORO_DISABLE_DEPRECATED_TASK_H=ON</code> to CMake when compiling QCoro
+to prevent it from installing the deprecated task.h header.</p>
+<h3 id="clang-cl-and-apple-clang-support">Clang-cl and apple-clang support</h3>
+<p>The clang compiler is fully supported by QCoro since 0.4.0. This version of QCoro
+intruduces supports for clang-cl and apple-clang.</p>
+<p>Clang-cl is a compiler-driver that provides MSVC-compatible command line options,
+allowing to use clang and LLVM as a drop-in replacement for the MSVC toolchain.</p>
+<p>Apple-clang is the official build of clang provided by Apple on MacOS, which may be
+different from the upstream clang releases.</p>
+<h3 id="full-changelog">Full changelog</h3>
+<ul>
+<li>Enable exceptions when compiling with clang-cl (<a href="https://github.com/danvratil/qcoro/issues/90">#90</a>, <a href="https://github.com/danvratil/qcoro/pull/91">#91</a>)</li>
+<li>Add option to generate code coverage report (<a href="https://github.com/danvratil/qcoro/commit/0f0408ce927e50450ab847cf290dd229b2a6e12c">commit 0f0408c</a>)</li>
+<li>Lower CMake requirement to 3.18.4 (<a href="https://github.com/danvratil/qcoro/commit/deb80c13d9c9d866304fd5a64a33168adab34111">commit deb80c1</a>)</li>
+<li>Add support for clang-cl (<a href="https://github.com/danvratil/qcoro/issues/84">#84</a>, <a href="https://github.com/danvratil/qcoro/pull/86">#86</a>)</li>
+<li>Avoid identifiers that begin with underscore and uppercase letter (<a href="https://github.com/danvratil/qcoro/pull/83">#83</a>)</li>
+<li>Add mising <code>&lt;chrono&gt;</code> include (<a href="https://github.com/danvratil/qcoro/pull/82">#82</a></li>
+<li>New module: QCoroWebSockets (<a href="https://github.com/danvratil/qcoro/pull/75">#75</a>, <a href="https://github.com/danvratil/qcoro/pull/88">#88</a>, <a href="https://github.com/danvratil/qcoro/pull/89">#89</a>)</li>
+<li>Add <code>QCoroFwd</code> header with forward-declarations of relevant types (<a href="https://github.com/danvratil/qcoro/issues/71">#71</a>)</li>
+<li>Deprecate <code>task.h</code> header file in favor of <code>qcorotask.h</code> (<a href="https://github.com/danvratil/qcoro/pull/70">#70</a>)</li>
+<li>Fix installing export headers (<a href="https://github.com/danvratil/qcoro/pull/77">#77</a>)</li>
+<li>Introduce support for generator coroutines (<a href="https://github.com/danvratil/qcoro/pulls/69">#69</a>)</li>
+<li>QCoro is now build with "modern Qt" compile definitions (<a href="https://github.com/danvratil/qcoro/pull/66">#66</a>)</li>
+<li>Export QCoro wrapper classes (<a href="https://github.com/danvratil/qcoro/issues/63">#63</a>, <a href="https://github.com/danvratil/qcoro/pull/65">#65</a>)</li>
+<li>Extended CI to include MSVC, apple-clang and multiple version of gcc and clang-cl (<a href="https://github.com/danvratil/qcoro/pull/60">#60</a>, <a href="https://github.com/danvratil/qcoro/pull/61">#61</a>)</li>
+<li>Fixed build with apple-clang</li>
+</ul>
 <h2 id="051-2022-04-27">0.5.1 (2022-04-27)</h2>
 <ul>
-<li>Fix build with GCC&gt;=11.3 (<a href="https://github.com/danvratil/qcoro/issues/#57">#57</a>, <a href="https://github.com/danvratil/qcoro/pulls/58">#58</a>)</li>
+<li>Fix build with GCC&gt;=11.3 (<a href="https://github.com/danvratil/qcoro/issues/57">#57</a>, <a href="https://github.com/danvratil/qcoro/pulls/58">#58</a>)</li>
 <li>Fix ODR violation when building with GCC and LTO enabled (<a href="https://github.com/danvratil/qcoro/pulls/59">#59</a>)</li>
 </ul>
 <h2 id="050-2022-04-25">0.5.0 (2022-04-25)</h2>
@@ -1514,7 +1790,7 @@ now possible to <code>co_await</code> thread start and end:</p>
 <span class="k">co_await</span><span class="w"> </span><span class="n">qCoro</span><span class="p">(</span><span class="kr">thread</span><span class="p">)</span><span class="o">-&gt;</span><span class="n">waitForFinished</span><span class="p">();</span><span class="w"></span>
 <span class="n">ui</span><span class="o">-&gt;</span><span class="n">setLabel</span><span class="p">(</span><span class="n">tr</span><span class="p">(</span><span class="s">&quot;Finished!&quot;</span><span class="p">));</span><span class="w"></span>
 </code></pre></div>
-<h3 id="full-changelog">Full changelog</h3>
+<h3 id="full-changelog_1">Full changelog</h3>
 <ul>
 <li><code>.then()</code> continuation for <code>Task&lt;T&gt;</code> (<a href="https://github.com/danvratil/qcoro/pull/39">#39</a>)</li>
 <li>Fixed namespace scoping (<a href="https://github.com/danvratil/qcoro/pull/45">#45</a>)</li>
@@ -1562,7 +1838,7 @@ Coroutine support requires tight co-operation between the compiler and standard 
 still considers their coroutine support experimental it expects all coroutine-related types in standard
 library to be located in <code>std::experimental</code> namespace. In GNU's libstdc++, coroutines are fully supported
 and thus implemented in the <code>std</code> namespace. This requires a little bit of extra glue, which is now in place.</p>
-<h3 id="full-changelog_1">Full changelog</h3>
+<h3 id="full-changelog_2">Full changelog</h3>
 <ul>
 <li>QCoro can now be built with Clang against libstdc++ (<a href="https://github.com/danvratil/qcoro/pull/38">#38</a>, <a href="https://github.com/danvratil/qcoro/issues/22">#22</a>)</li>
 <li>Qt5 and Qt6 builds of QCoro are now co-installable (<a href="https://github.com/danvratil/qcoro/issues/36">#36</a>, <a href="https://github.com/danvratil/qcoro/pull/37">#37</a>)</li>
